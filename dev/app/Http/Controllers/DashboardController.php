@@ -1,19 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\AppController;
+use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use App\Models\Dashboard;
 use Illuminate¥Support¥Facades¥DB;
 
-class DashboardController extends AppController
+class DashboardController extends BaseController
 {
 	
-	// 当画面バージョン
+	// 当画面のバージョン（バージョンを変更するとjs, css読込のキャッシュ読込対策をする）
 	public $this_page_version = '1.0.0';
 	
-	protected $cb; // CrudBase制御クラス
-	protected $md; // モデル
+	//
+// 	protected $cb; // CrudBase制御クラス
+// 	protected $md; // モデル
 	
 	/**
 	 * ネコCRUDページ
@@ -31,6 +32,7 @@ class DashboardController extends AppController
 		//■■■□□□■■■□□□
 		//$crudBaseData = $this->cb->indexBefore();//indexアクションの共通先処理(CrudBaseController)
 		$userInfo = $this->getUserInfo();
+		var_dump($userInfo);//■■■□□□■■■□□□)
 		$crudBaseData['userInfo'] = $userInfo;
 
 		$crud_base_json = json_encode($crudBaseData,JSON_HEX_TAG | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_HEX_APOS);

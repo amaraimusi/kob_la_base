@@ -8,7 +8,7 @@ use Illuminate¥Support¥Facades¥DB;
  * CakePHP標準基本コントローラ
  *
  */
-class AppController extends Controller{
+class BaseController extends Controller{
 	
     protected $cb; // CrudBase制御クラス
     protected $md;
