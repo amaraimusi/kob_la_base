@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//■■■□□□■■■□□□
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
+    //Route::get('/', 'App\Http\Controllers\DashboardController@index');
+    Route::get('dashboard', 'App\Http\Controllers\DashboardController@index');
+    Route::get('/home', 'App\Http\Controllers\DashboardController@index');
+    Route::get('logout', 'App\Http\Controllers\DashboardController@logout');
 
-Route::get('/', 'App\Http\Controllers\DashboardController@index');
-Route::get('dashboard', 'App\Http\Controllers\DashboardController@index');
-Route::get('/home', 'App\Http\Controllers\DashboardController@index');
+Auth::routes();
 
-Auth::routes(); // ログイン画面関連
-
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

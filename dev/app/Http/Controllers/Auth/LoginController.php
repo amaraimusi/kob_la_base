@@ -48,7 +48,7 @@ class LoginController extends Controller
         $username = $request->input($this->username());
         $password = $request->input('password');
         
-        if (filter_var($username, \FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
             $credentials = ['email' => $username, 'password' => $password];
         } else {
             $credentials = [$this->username() => $username, 'password' => $password];
@@ -56,5 +56,4 @@ class LoginController extends Controller
         
         return $this->guard()->attempt($credentials, $request->filled('remember'));
     }
-    
 }

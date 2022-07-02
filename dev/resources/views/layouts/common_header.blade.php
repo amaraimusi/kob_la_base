@@ -1,9 +1,9 @@
 
 <?php 
-	$auth_level = 0; // 権限レベル
-	$authority_wamei = ''; // 権限名
-	$user_name = '';
-	$nickname = '';
+	$auth_level = 40; // 権限レベル
+	$authority_wamei = 'testkenge'; // 権限名
+	$user_name = 'xxx';
+	$nickname = 'test';
 // 	if(!empty($crudBaseData['userInfo']['authority'])){
 // 		$userInfo = $crudBaseData['userInfo'];
 // 		$user_name = $userInfo['user_name'];
@@ -38,6 +38,8 @@
 		
 		<ul class="navbar-nav">
 			<li class="nav-item dropdown">
+			
+				<a href="logout" class="nav-link text-light">ログアウト</a>
 				@auth
 					<a class="nav-link dropdown-toggle text-light" href="#" id="username_navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{$nickname}}

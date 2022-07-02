@@ -8,7 +8,7 @@ use Illuminate¥Support¥Facades¥DB;
  * CakePHP標準基本コントローラ
  *
  */
-class AppController {
+class AppController extends Controller{
 	
     protected $cb; // CrudBase制御クラス
     protected $md;
@@ -245,6 +245,25 @@ class AppController {
 	public function saveSimple(&$ent, $tbl_name){
 	    return $this->cb->saveSimple($ent, $tbl_name);
 	    
+	}
+	
+	
+	
+	/**
+	 * ユーザーをアプリケーションからログアウトさせる
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function logout(Request $request)
+	{
+	    \Auth::logout();
+	    
+	    $request->session()->invalidate();
+	    
+	    $request->session()->regenerateToken();
+	    
+	    return redirect('/');
 	}
 	
 
