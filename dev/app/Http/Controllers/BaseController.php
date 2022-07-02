@@ -10,8 +10,6 @@ use Illuminate¥Support¥Facades¥DB;
  */
 class BaseController extends Controller{
 	
-    protected $cb; // CrudBase制御クラス
-    protected $md;
     
 	// 更新ユーザーなど共通フィールドをデータにセットする。
 	protected function setCommonToData($data){
@@ -117,15 +115,8 @@ class BaseController extends Controller{
 	
 	/**
 	 * ユーザー情報を取得する
-	 * @param [] $param
-	 *  - review_mode レビューモード true:レビューモードON
 	 *
-	 * @return
-	 *  - update_user 更新ユーザー
-	 *  - ip_addr IPアドレス
-	 *  - user_agent ユーザーエージェント
-	 *  - role 権限
-	 *  - authority 権限データ
+	 * @return [] <mixied> ユーザー情報
 	 */
 	public function getUserInfo($param=[]){
 		
@@ -133,9 +124,10 @@ class BaseController extends Controller{
 		$userInfo = [
 			'id'=> 0,
 			'user_id'=> 0,
-			'update_user' => '',
-			'username' => '',
-			'user_name' => '',
+		    'name' => '',
+		    'username' => '',
+		    'user_name' => '',
+		    'update_user' => '',
 			'ip_addr' => '',
 			'user_agent' => '',
 			'email'=>'',
@@ -149,16 +141,13 @@ class BaseController extends Controller{
 			'nickname' => ''
 		];
 		
-		if(!empty($param['review_mode'])){
-			return $this->getUserInfoForReviewMode($userInfo); // レビューモード用ユーザー情報を取得
-		}
-		
 		if(\Auth::id()){// idは未ログインである場合、nullになる。
 			$userInfo['id'] = \Auth::id(); // ユーザーID
 			$userInfo['user_id'] = $userInfo['id'];
-			$userInfo['username'] = \Auth::user()->name; // ユーザー名
-			$userInfo['user_name'] = $userInfo['username'];
-			$userInfo['update_user'] = $userInfo['username'];
+			$userInfo['name'] = \Auth::user()->name; // ユーザー名
+			$userInfo['username'] = $userInfo['name'] ;
+			$userInfo['user_name'] = $userInfo['name'];
+			$userInfo['update_user'] = $userInfo['name'];
 			$userInfo['email'] = \Auth::user()->email; // メールアドレス
 			$userInfo['role'] = \Auth::user()->role; // メールアドレス
 			$userInfo['nickname'] = \Auth::user()->nickname; // メールアドレス
@@ -193,7 +182,9 @@ class BaseController extends Controller{
 	 * @param [] $userInfo
 	 * @return [] $userInfo
 	 */
-	private function getUserInfoForReviewMode(&$userInfo){
+	public function getUserInfoForReviewMode(){
+	    
+	    $userInfo = $this->getUserInfo();
 		
 		$userInfo['id'] = -1;
 		$userInfo['user_id'] = $userInfo['id'];
@@ -236,16 +227,7 @@ class BaseController extends Controller{
 		return $authority;
 	}
 	
-	/**
-	 * エンティティをDB保存(シンプル版)
-	 * ※SQLインジェクションのサニタイズは当メソッドで行っていないためよく注意すること。
-	 * @param [] $ent エンティティ
-	 * @param string $tbl_name
-	 */
-	public function saveSimple(&$ent, $tbl_name){
-	    return $this->cb->saveSimple($ent, $tbl_name);
-	    
-	}
+
 	
 	
 	

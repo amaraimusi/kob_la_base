@@ -3,22 +3,15 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
-use App\Models\Dashboard;
 use Illuminate¥Support¥Facades¥DB;
 
 class DashboardController extends BaseController
 {
 	
-	// 当画面のバージョン（バージョンを変更するとjs, css読込のキャッシュ読込対策をする）
+	// 当画面のバージョン（バージョンを変更するとjs, css読込のキャッシュ読込対策が行われる）
 	public $this_page_version = '1.0.0';
 	
-	//
-// 	protected $cb; // CrudBase制御クラス
-// 	protected $md; // モデル
-	
-	/**
-	 * ネコCRUDページ
-	 */
+
 	public function index(){
 		
 	    // ログアウトになっていたらログイン画面にリダイレクト
@@ -26,61 +19,16 @@ class DashboardController extends BaseController
 	        return redirect('login');
 	    }
 		
-		//$this->init();■■■□□□■■■□□□
-		
-		// CrudBase共通処理（前）
-		//■■■□□□■■■□□□
-		//$crudBaseData = $this->cb->indexBefore();//indexアクションの共通先処理(CrudBaseController)
-		$userInfo = $this->getUserInfo();
-		var_dump($userInfo);//■■■□□□■■■□□□)
-		$crudBaseData['userInfo'] = $userInfo;
+		$userInfo = $this->getUserInfo(); // ログインユーザーのユーザー情報を取得する
 
-		$crud_base_json = json_encode($crudBaseData,JSON_HEX_TAG | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_HEX_APOS);
-		return view('dashboard.index', compact('crudBaseData', 'crud_base_json'));
+		return view('dashboard.index', [
+		    'userInfo' => $userInfo,
+		    'this_page_version' => $this->this_page_version,
+		]);
 		
 		
 	}
-	
-	
-// 	/**■■■□□□■■■□□□
-// 	 * CrudBase用の初期化処理
-// 	 *
-// 	 * @note
-// 	 * フィールド関連の定義をする。
-// 	 *
-// 	 */
-// 	private function init(){
 
-// 		$crud_base_path = CRUD_BASE_PATH;
-// 		$crud_base_js = CRUD_BASE_JS;
-// 		$crud_base_css = CRUD_BASE_CSS;
-// 		require_once $crud_base_path . 'CrudBaseController.php';
-		
-// 		$model = new Dashboard(); // モデルクラス
-		
-// 		$crudBaseData = [
-// 			'fw_type' => 'laravel7',
-// 			'model_name_c' => 'Dashboard',
-// 			'tbl_name' => 'nekos', // テーブル名をセット
-// 			'crud_base_path' => $crud_base_path,
-// 			'crud_base_js' => $crud_base_js,
-// 			'crud_base_css' => $crud_base_css,
-// 		];
-		
-// 		$crudBaseCon = new \CrudBaseController($this, $model, $crudBaseData);
-		
-// 		$model->init($crudBaseCon);
-		
-// 		$this->md = $model;
-// 		$this->cb =$crudBaseCon;
-		
-// 		$crudBaseData = $crudBaseCon->getCrudBaseData();
-// 		return $crudBaseData;
-		
-// 	}
-	
-	
-	
 }
 
 
