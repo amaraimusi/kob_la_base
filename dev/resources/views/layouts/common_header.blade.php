@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-success">
 	<div class="container-fluid">
-		<a class="navbar-brand text-light" href="{{ url('/home') }}">○○システム</a>
+		<a class="navbar-brand text-light" href="{{ url('/home') }}">{{ config('app.name', '○○システム') }}</a>
 	
 		<div class="collapse navbar-collapse" >
 			<ul class="navbar-nav">
