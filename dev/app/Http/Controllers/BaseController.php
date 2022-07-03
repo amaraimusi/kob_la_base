@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate¥Support¥Facades¥DB;
+use App\Consts;
 
 /**
  * CakePHP標準基本コントローラ
@@ -49,7 +49,6 @@ class BaseController extends Controller{
 				
 			$data[$i] = $ent;
 		}
-	
 	
 		return $data;
 	
@@ -133,12 +132,10 @@ class BaseController extends Controller{
 			'email'=>'',
 			'role' => 'oparator',
 			'delete_flg' => 0,
-			'authority' => [
-				'name' => '',
-				'wamei' => '',
-				'level' => 0,
-			],
-			'nickname' => ''
+			'nickname' => '',
+		    'authority_wamei'=>'',
+		    'authority_name'=>'',
+		    'authority_level'=>0, // 権限レベル(権限が強いほど大きな数値）
 		];
 		
 		if(\Auth::id()){// idは未ログインである場合、nullになる。
@@ -164,15 +161,18 @@ class BaseController extends Controller{
 			
 		}
 		
-		
 		// 権限が空であるならオペレータ扱いにする
 		if(empty($userInfo['role'])){
 			$userInfo['role'] = 'oparator';
 		}
 		
- 		$role = $userInfo['role'];
+		// 権限まわり
+		$role = $userInfo['role'];
  		$userInfo['authority'] = $this->getAuthority($role);
-
+ 		$userInfo['authority_wamei'] = $userInfo['authority']['wamei'];
+ 		$userInfo['authority_name'] = $userInfo['authority']['name'];
+ 		$userInfo['authority_level'] = $userInfo['authority']['level'];
+ 		
 		return $userInfo;
 	}
 	
@@ -197,12 +197,22 @@ class BaseController extends Controller{
 		$userInfo['role'] = 'admin';
 		$userInfo['delete_flg'] = 0;
 		$userInfo['nickname'] = '見本ユーザー';
-		$userInfo['authority']['name'] = 'admin';
-		$userInfo['authority']['wamei'] = '見本';
-		$userInfo['authority']['level'] = 30;
 		$userInfo['review_mode'] = 1; // 見本モードON;
-
+		
+		$userInfo['authority'] = $this->getAuthority($role);
+		$userInfo['authority_wamei'] = $userInfo['authority']['wamei'];
+		$userInfo['authority_name'] = $userInfo['authority']['name'];
+		$userInfo['authority_level'] = $userInfo['authority']['level'];
+		
 		return $userInfo;
+	}
+	
+	/**
+	 * 権限情報を取得する
+	 * @return [] 権限情報
+	 */
+	public function gettAuthorityInfo(){
+	    return \App\Consts\ConstUser::AUTHORITY_INFO;
 	}
 	
 	
@@ -212,12 +222,9 @@ class BaseController extends Controller{
 	 * @return array 権限エンティティ
 	 */
 	private function getAuthority($role){
-		
-		// 権限データを取得する
-		global $crudBaseAuthorityData; // 権限データ
-		
-		// 権限データを取得する
-		$authorityData = $crudBaseAuthorityData;
+
+		// 権限情報を取得する
+		$authorityData = $this->gettAuthorityInfo();
 		
 		$authority = [];
 		if(!empty($authorityData[$role])){

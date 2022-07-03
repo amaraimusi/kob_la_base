@@ -30,49 +30,63 @@ $ver_str = '?v=1.0.0';
 </head>
 <body>
 
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
 @include('layouts.common_header')
 
 <div class="container-fluid">
-<div id="org_div" style="margin-top:20px;margin-bottom:60px;">
-	<h3 class="text-primary">CrudBase 見本機能一覧</h3>
-	<div class="row" style="margin-top:20px;">
-	
-		<!-- カード -->
-		<div class="col-sm-3">
-			<div class="card border-primary ">
-				<div class="card-body" >
-					<h5 class="card-title text-primary" style="font-weight:bold">見本管理画面</h5>
-					<div class="card_msg">
-						<p class="card-text" style="height:80px">管理画面の見本です。このシステムを元に様々なWEBシステムを開発しています。</p>
-					</div>
-					<a href="{{url('/neko')}}" class="btn btn-primary">ページへ移動</a>
-				</div>
-			</div>
-		</div>
-	
-		
-	</div><!--  row -->
-	
-</div>
 
+<h3 class="text-primary">○○システムのダッシュボード</h3>
+<div class="row">
+	<div class="col-12 col-md-2">
+		<div>サイドメニュー1</div>
+		<div>サイドメニュー2</div>
+		<div>サイドメニュー3</div>
+		<div>サイドメニュー4</div>
+	</div>
+	
+	<div class="col-12 col-md-10">
+
+
+		<div id="org_div" style="margin-top:20px;margin-bottom:60px;">
+			<div class="row" style="margin-top:20px;">
+			
+				<!-- カード -->
+				<div class="col-sm-3">
+					<div class="card border-primary ">
+						<div class="card-body" >
+							<h5 class="card-title text-primary" style="font-weight:bold">ダミー</h5>
+							<div class="card_msg">
+								<p class="card-text" style="height:80px">ダミー</p>
+							</div>
+							<a href="{{url('#')}}" class="btn btn-primary">ページへ移動</a>
+						</div>
+					</div>
+				</div>
+			
+				<!-- カード -->
+				<div class="col-sm-3">
+					<div class="card border-primary ">
+						<div class="card-body" >
+							<h5 class="card-title text-primary" style="font-weight:bold">ダミー</h5>
+							<div class="card_msg">
+								<p class="card-text" style="height:80px">ダミー</p>
+							</div>
+							<a href="{{url('#')}}" class="btn btn-primary">ページへ移動</a>
+						</div>
+					</div>
+				</div>
+	
+			</div><!--  row -->
+			
+		</div>
+
+
+	</div>
+</div><!--  row  -->
 
 
 </div><!-- container-fluid -->
-@include('layouts.common_footer')
 
+@include('layouts.common_footer')
 
 </body>
 </html>
