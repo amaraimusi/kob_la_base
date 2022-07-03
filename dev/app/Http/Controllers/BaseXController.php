@@ -8,7 +8,7 @@ use App\Consts;
  * CakePHP標準基本コントローラ
  *
  */
-class BaseController extends Controller{
+class BaseXController extends Controller{
 	
     
 	// 更新ユーザーなど共通フィールドをデータにセットする。

@@ -40,6 +40,21 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('権限') }}</label>
+
+                            <div class="col-md-6">
+                            
+                            	<select name="role" id="role" class="form-select">
+                            		<option value="admin">管理者</option>
+                            		<option value="b2">B</option>
+                            		<option value="b3">C</option>
+                            		<option value="b4">D</option>
+                            	</select>
+
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('パスワード') }}</label>
 
                             <div class="col-md-6">
@@ -54,7 +69,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('もう一度パスワードを入力してください') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('パスワード(再入力)') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">

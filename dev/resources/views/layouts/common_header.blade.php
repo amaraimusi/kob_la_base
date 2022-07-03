@@ -17,6 +17,7 @@
 	
 	<!-- メニュー右寄区分 -->
 	<ul class="navbar-nav">
+
 		<li class="nav-item dropdown">
 		
 			@auth

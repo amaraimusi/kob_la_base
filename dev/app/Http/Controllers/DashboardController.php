@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\BaseXController;
 use Illuminate\Http\Request;
 use Illuminate¥Support¥Facades¥DB;
 
-class DashboardController extends BaseController
+class DashboardController extends BaseXController
 {
 	
 	// 当画面のバージョン（バージョンを変更するとjs, css読込のキャッシュ読込対策が行われる）
