@@ -98,9 +98,13 @@ CREATE DATABASE kob_la_base COLLATE utf8mb4_general_ci
 <br>
 
 
-⑪　.envファイルを開き、開発環境に合わせたDB設定に書き換えてください。
+⑪　.envを用意し開発環境に合わせたDB設定に書き換えてください。
 
-※kob_la_base/.envファイルの設定例
+.env.exampleをコピーし、「.env」ファイルを作成することもできます。
+
+kob_la_base/.env.example → コピー → kob_la_base/.env
+
+.envファイルの設定例
 
 
 ```
@@ -153,7 +157,31 @@ ni_n_toku_tennou@example.com  管理者権限
 
 他にも数件のユーザーアカウントをご用意しています。詳しくはデータベースのusersテーブルを参照してください。
 
+<br><br>
+
+
+##ベースシステムを新規開発プロジェクトに移植する。
+
+
+① 新規開発プロジェクトのディレクトリにkob_la_baseのdevフォルダを丸ごとコピーします。
+
+devフォルダの場所→ kob_la_base/dev
+
 <br>
+
+② kob_la_baseデータベースの下記テーブルを新規開発プロジェクトのデータベースにインポートします。
+- failed_jobs
+- migrations
+- password_resets
+- personal_access_tokens
+- sessions
+- users
+
+<br><br>
+
+
+
+
 
 
 
