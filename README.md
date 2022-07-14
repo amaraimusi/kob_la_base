@@ -119,13 +119,13 @@ DB_PASSWORD=
 <br>
 
 
-⑫　シンボリックリンクを設定してください。（htdocsディレクトリをプロジェクトを作成している場合は不要です。）
+⑫　シンボリックリンクを設定してください。（htdocsディレクトリにプロジェクトを作成している場合は不要です。）
 
 
 Windowsでシンボリックリンクを作成するには、Windows PowerShellを管理者権限で開き、下記コマンドを実行します。
 
 
-コマンドのuserとなっている部分は各自のPC環境に合わせて書き換えてください。
+パスは各自のPC環境に合わせて書き換えてください。
 
 ```
 cmd /c mklink /D C:\xampp\htdocs\kob_la_base C:\Users\user\git\kob_la_base
