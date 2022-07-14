@@ -98,11 +98,12 @@ CREATE DATABASE kob_la_base COLLATE utf8mb4_general_ci
 <br>
 
 
-⑪　.envを用意し開発環境に合わせたDB設定に書き換えてください。
+⑪　.envにてDB設定とSession保存先設定をします。下記のように書き換えてください。
+
 
 .env.exampleをコピーし、「.env」ファイルを作成することもできます。
 
-kob_la_base/.env.example → コピー → kob_la_base/.env
+sales_mng/.env.example → コピー → sales_mng/.env
 
 .envファイルの設定例
 
@@ -111,12 +112,13 @@ kob_la_base/.env.example → コピー → kob_la_base/.env
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=kob_la_base
+DB_DATABASE=sales_mng
 DB_USERNAME=root
 DB_PASSWORD=
-```
 
-<br>
+
+SESSION_DRIVER=database
+```
 
 
 ⑫　シンボリックリンクを設定してください。（htdocsディレクトリにプロジェクトを作成している場合は不要です。）
