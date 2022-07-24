@@ -121,6 +121,39 @@ SESSION_DRIVER=database
 ```
 
 
+⑪-2 サーバーにアップする場合はメール設定を上記と同じ「.env」ファイルに記載します。
+
+レンタルサーバー（さくらインターネット）だと以下のような感じで設定します。
+
+```
+
+MAIL_MAILER=smtp
+MAIL_HOST=アカウント.sakura.ne.jp
+MAIL_PORT=587
+MAIL_USERNAME=アカウント@アカウント.sakura.ne.jp
+MAIL_PASSWORD=メールのパスワード
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=アカウント@アカウント.sakura.ne.jp
+MAIL_FROM_NAME="○○システム"
+
+```
+
+
+エックスサーバーの場合(動作未確認）
+
+```
+MAIL_DRIVER=smtp
+MAIL_HOST=xxxxx.xserver.jp
+MAIL_PORT=465
+MAIL_USERNAME=xxxxx@helog.jp
+MAIL_PASSWORD=xxxxxxxx
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=xxxxx@helog.jp（送信元メールアドレス）
+MAIL_FROM_NAME=xxxxx（送信元名）
+```
+
+
+
 ⑫　シンボリックリンクを設定してください。（htdocsディレクトリにプロジェクトを作成している場合は不要です。）
 
 
